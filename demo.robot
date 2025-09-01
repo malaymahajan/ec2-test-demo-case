@@ -8,7 +8,16 @@ ${SEARCH_TERM}    OpenAI ChatGPT
 
 *** Test Cases ***
 Google Search and Log First 5 Results
-    Open Browser    ${URL}    ${BROWSER}    options=--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --window-size=1920,1080
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    Call Method    ${options}    add_argument    --disable-notifications
+    Call Method    ${options}    add_argument    --disable-infobars
+    Call Method    ${options}    add_argument    --disable-extensions
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --headless
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --window-size=1920,1080
+
+    Open Browser    ${URL}    ${browser}    options=${options}
     Sleep    2s
 
     Handle Consent Popup If Present
