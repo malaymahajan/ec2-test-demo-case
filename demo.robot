@@ -15,7 +15,6 @@ Google Search and Log First 5 Results
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --headless
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${options}    add_argument    --window-size=1920,1080
 
     Open Browser    ${URL}    ${browser}    options=${options}
     Sleep    2s
