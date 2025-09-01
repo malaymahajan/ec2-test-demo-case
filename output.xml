@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.12.5 on darwin)" generated="20250901 10:36:12.922" rpa="false" schemaversion="4">
+<suite id="s1" name="Demo" source="/Users/vijay/Desktop/test-ec2/demo.robot">
+<test id="s1-t1" name="Google Search and Log First 5 Results" line="10">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250901 10:36:13.046" level="INFO">Opening browser 'Chrome' to base url 'https://www.google.com'.</msg>
+<status status="PASS" starttime="20250901 10:36:13.045" endtime="20250901 10:36:26.023"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20250901 10:36:26.023" endtime="20250901 10:36:26.905"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250901 10:36:28.906" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250901 10:36:26.905" endtime="20250901 10:36:28.906"/>
+</kw>
+<kw name="Handle Consent Popup If Present">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${exists}</var>
+<arg>Element Should Be Visible</arg>
+<arg>xpath://button[text()="I agree" or text()="Accept all"]</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>xpath://button[text()="I agree" or text()="Accept all"]</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250901 10:36:29.202" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20250901 10:36:29.202" level="FAIL">Element with locator 'xpath://button[text()="I agree" or text()="Accept all"]' not found.</msg>
+<status status="FAIL" starttime="20250901 10:36:28.909" endtime="20250901 10:36:29.204"/>
+</kw>
+<msg timestamp="20250901 10:36:29.205" level="INFO">${exists} = False</msg>
+<status status="PASS" starttime="20250901 10:36:28.908" endtime="20250901 10:36:29.205"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${exists}</arg>
+<arg>Click Element</arg>
+<arg>xpath://button[text()="I agree" or text()="Accept all"]</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20250901 10:36:29.205" endtime="20250901 10:36:29.205"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250901 10:36:30.206" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250901 10:36:29.205" endtime="20250901 10:36:30.206"/>
+</kw>
+<status status="PASS" starttime="20250901 10:36:28.907" endtime="20250901 10:36:30.206"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:q</arg>
+<arg>${SEARCH_TERM}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250901 10:36:30.208" level="INFO">Typing text 'OpenAI ChatGPT' into text field 'name:q'.</msg>
+<status status="PASS" starttime="20250901 10:36:30.207" endtime="20250901 10:36:30.372"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>name:q</arg>
+<arg>RETURN</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20250901 10:36:30.373" level="INFO">Sending key(s) ('RETURN',) to name:q element.</msg>
+<msg timestamp="20250901 10:36:30.658" level="INFO">Pressing special key RETURN to element.</msg>
+<msg timestamp="20250901 10:36:30.658" level="INFO">Releasing special key RETURN.</msg>
+<status status="PASS" starttime="20250901 10:36:30.372" endtime="20250901 10:36:30.663"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250901 10:36:33.665" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20250901 10:36:30.664" endtime="20250901 10:36:33.665"/>
+</kw>
+<kw name="Log First 5 Google Search Results">
+<kw name="Get WebElements" library="SeleniumLibrary">
+<var>@{results}</var>
+<arg>css:div.g</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<msg timestamp="20250901 10:36:33.675" level="INFO">@{results} = [ ]</msg>
+<status status="PASS" starttime="20250901 10:36:33.666" endtime="20250901 10:36:33.675"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${index}</var>
+<value>0</value>
+<value>5</value>
+<iter>
+<var name="${index}">0</var>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${title}</var>
+<arg>xpath=(//div[@class="g"]//h3)[${index}+1]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20250901 10:36:33.802" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20250901 10:36:33.802" level="FAIL">Element with locator 'xpath=(//div[@class="g"]//h3)[0+1]' not found.</msg>
+<status status="FAIL" starttime="20250901 10:36:33.676" endtime="20250901 10:36:33.802"/>
+</kw>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<var>${url}</var>
+<arg>xpath=(//div[@class="g"]//a)[${index}+1]</arg>
+<arg>href</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="NOT RUN" starttime="20250901 10:36:33.802" endtime="20250901 10:36:33.802"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${index}+1. ${title}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250901 10:36:33.802" endtime="20250901 10:36:33.802"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>URL: ${url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250901 10:36:33.802" endtime="20250901 10:36:33.802"/>
+</kw>
+<status status="FAIL" starttime="20250901 10:36:33.676" endtime="20250901 10:36:33.802"/>
+</iter>
+<status status="FAIL" starttime="20250901 10:36:33.675" endtime="20250901 10:36:33.802"/>
+</for>
+<status status="FAIL" starttime="20250901 10:36:33.666" endtime="20250901 10:36:33.802"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" starttime="20250901 10:36:33.802" endtime="20250901 10:36:33.802"/>
+</kw>
+<status status="FAIL" starttime="20250901 10:36:13.045" endtime="20250901 10:36:33.803">Element with locator 'xpath=(//div[@class="g"]//h3)[0+1]' not found.</status>
+</test>
+<status status="FAIL" starttime="20250901 10:36:12.923" endtime="20250901 10:36:33.804"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Demo">Demo</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
