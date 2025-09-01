@@ -8,7 +8,7 @@ ${SEARCH_TERM}    OpenAI ChatGPT
 
 *** Test Cases ***
 Google Search and Log First 5 Results
-    Open Browser    ${URL}    ${BROWSER}    options=add_argument(--headless); add_argument(--no-sandbox); add_argument(--disable-dev-shm-usage); add_argument(--disable-gpu); add_argument(--window-size=1920,1080)
+    Open Browser    ${URL}    ${BROWSER}    options=--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --window-size=1920,1080
     Sleep    2s
 
     Handle Consent Popup If Present
